@@ -30,6 +30,7 @@ public class Jeu {
         System.out.println("Création du personnage...");
 
         initPersonnage();
+        QuestionCondition.InitQuestionCondition();
 
         System.out.println(personnage.getGenre().longRegne()
                 +" "+personnage.getNom());

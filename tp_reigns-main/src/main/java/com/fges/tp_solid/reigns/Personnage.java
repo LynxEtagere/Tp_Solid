@@ -68,7 +68,7 @@ public class Personnage {
         this.genre = genre;
     }
 
-    public Jauge getJaugeClerge() {
+    public static Jauge getJaugeClerge() {
         return jaugeClerge;
     }
 
@@ -92,7 +92,7 @@ public class Personnage {
         this.jaugeArmee = jaugeArmee;
     }
 
-    public Jauge getJaugeFinance() {
+    public static Jauge getJaugeFinance() {
         return jaugeFinance;
     }
 
