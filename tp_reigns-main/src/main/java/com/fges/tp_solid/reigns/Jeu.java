@@ -16,44 +16,44 @@ import java.util.Scanner;
  * @author julie.jacques
  */
 public class Jeu {
-    
+
     private static Personnage personnage;
-    private static ArrayList<Question> questions;
-    
+    public static ArrayList<Question> questions;
+
     public static void main(String args[]){
-        
+
         // début du jeu 
         System.out.println("Bienvenue sur Reigns");
-        
+
         initBanqueQuestions();
-        
+
         System.out.println("Création du personnage...");
-        
+
         initPersonnage();
-        
+
         System.out.println(personnage.getGenre().longRegne()
                 +" "+personnage.getNom());
-        
-        personnage.AfficheJauges();
-        
+
+        AfficherJauges.AfficheJauges();
+
         // tirage des questions
         int nbTours = 0;
         while(!personnage.finDuJeu()){
             nbTours++;
-            Question question = getQuestionAleatoire();
+            Question question =  getQuestionAleatoire.getQuestionAleatoire();
             reponseQuestion(question);
-            personnage.AfficheJauges();
+            AfficherJauges.AfficheJauges();
         }
-        
+
         // fin du jeu
         System.out.println(
-            personnage.getNom() 
-            + " a perdu ! Son règne a duré "
-            +nbTours
-            + " tours");
-         
+                personnage.getNom()
+                        + " a perdu ! Son règne a duré "
+                        +nbTours
+                        + " tours");
+
     }
-    
+
     private static void reponseQuestion(Question question){
         question.afficheQuestion();
         // récupère la réponse
@@ -71,26 +71,26 @@ public class Jeu {
             question.appliqueEffetsDroite(personnage);
         }
     }
-    
-    
-    private static void initPersonnage(){        
+
+
+    private static void initPersonnage(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Entrez le nom du personnage: ");
         System.out.flush();
         String nom = scanner.nextLine();
         System.out.println(
-            "Faut-il vous appeler Roi ou Reine ? (1 pour Roi, 2 pour Reine)");
+                "Faut-il vous appeler Roi ou Reine ? (1 pour Roi, 2 pour Reine)");
         int genre = scanner.nextInt();
-        Genre roiReine; 
+        Genre roiReine;
         if(genre==1){
             roiReine = ROI;
         }else{
             roiReine = REINE;
         }
-        
+
         Jeu.personnage = new Personnage(nom,roiReine);
     }
-    
+
     private static void initBanqueQuestions(){
         questions = new ArrayList<>();
         Question question1 = new Question(
@@ -131,21 +131,18 @@ public class Jeu {
         question4.ajouteEffetDroite(TypeJauge.PEUPLE, +3);
         questions.add(question4);
         Question question5 = new Question(
-                    "Paysan",
-                    "Abondance de récoltes cette année",
-                    "Taxer énormément",
-                    "Taxer un tout petit peu");
+                "Paysan",
+                "Abondance de récoltes cette année",
+                "Taxer énormément",
+                "Taxer un tout petit peu");
         question5.ajouteEffetGauche(TypeJauge.FINANCE, +10);
         question5.ajouteEffetGauche(TypeJauge.PEUPLE, -5);
         question5.ajouteEffetDroite(TypeJauge.FINANCE, +1);
         question5.ajouteEffetDroite(TypeJauge.PEUPLE, -3);
         questions.add(question5);
     }
-    
-    private static Question getQuestionAleatoire(){
-        int numQuestion = (int) (Math.random()*questions.size());
-        return questions.get(numQuestion);
-    }
-    
-    
+
+
+
+
 }

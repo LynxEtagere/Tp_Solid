@@ -15,10 +15,10 @@ public class Personnage {
     protected String nom;
     protected Genre genre;
     
-    protected Jauge jaugeClerge;
-    protected Jauge jaugePeuple;
-    protected Jauge jaugeArmee;
-    protected Jauge jaugeFinance;
+    protected static Jauge jaugeClerge;
+    protected static Jauge jaugePeuple;
+    protected static Jauge jaugeArmee;
+    protected static Jauge jaugeFinance;
     
     public Personnage(String nom, Genre genre){
         this.nom = nom;
@@ -29,17 +29,6 @@ public class Personnage {
         jaugePeuple = new Jauge("Peuple",(int) (15 + Math.random() * ( 35 - 15 )));
         jaugeArmee = new Jauge("Armée",(int) (15 + Math.random() * ( 35 - 15 )));
         jaugeFinance = new Jauge("Finance",(int) (15 + Math.random() * ( 35 - 15 )));
-    }
-    
-    /**
-     * Affiche les jauges dans la console
-     */
-    public void AfficheJauges(){
-        afficheJauge(jaugeClerge);
-        afficheJauge(jaugePeuple);
-        afficheJauge(jaugeArmee);
-        afficheJauge(jaugeFinance);
-        System.out.flush();
     }
     
     /**
@@ -61,24 +50,7 @@ public class Personnage {
         }
     }
     
-    /**
-     * Affiche une jauge dans la console (
-     */
-    private void afficheJauge(Jauge jauge){
-        String resultat = "[";
-        // valeur : ####
-        for(int i=0;i<jauge.getValeur();i++){
-            resultat += "#";
-        }
-        // on complète avec ____
-        for(int i=0;i<50-(jauge.getValeur()>0?jauge.getValeur():0);i++){
-            resultat += "_";
-        }
-        resultat += "] ";
-        // affichage du nom
-        resultat += jauge.getNom();
-        System.out.println(resultat);
-    }
+
 
     public String getNom() {
         return nom;
