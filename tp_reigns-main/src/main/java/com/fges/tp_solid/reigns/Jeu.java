@@ -17,8 +17,9 @@ import java.util.Scanner;
  */
 public class Jeu {
 
-    private static Personnage personnage;
-    public static ArrayList<Question> questions;
+    protected static Personnage personnage;
+    protected static ArrayList<Question> questions;
+    static int nbTours = 0;
 
     public static void main(String args[]){
 
@@ -38,7 +39,7 @@ public class Jeu {
         AfficherJauges.AfficheJauges();
 
         // tirage des questions
-        int nbTours = 0;
+
         while(!personnage.finDuJeu()){
             nbTours++;
             Question question =  getQuestionAleatoire.getQuestionAleatoire();
@@ -74,7 +75,7 @@ public class Jeu {
     }
 
 
-    private static void initPersonnage(){
+    protected static void initPersonnage(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Entrez le nom du personnage: ");
         System.out.flush();
